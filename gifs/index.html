@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>squair.xyz > My Favourited GIFs</title>
+  <link rel="icon" type="image/png" href="https://squair.xyz/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #111827;
+    }
+    .gif-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s ease;
+    }
+    .copy-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .copied {
+      background-color: #10b981; /* green */
+    }
+  </style>
+</head>
+<body class="text-white font-sans">
+  <section class="min-h-screen p-8">
+    <h1 onclick="history.back()" style="cursor: pointer;" class="text-2xl font-bold text-blue-400 mb-8 text-center">back</h1>
+    <div id="gif-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center"></div>
+
+    <!-- Pagination Controls -->
+    <div class="flex justify-center mt-8 gap-4">
+      <button id="prev-btn" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600" disabled><img src="arrowL.png"/></button>
+      <button id="next-btn" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600"><img src="arrowR.png"/></button>
+    </div>
+  </section>
+
+  <script>
+    const gifDirectory = '/gifs/';
+    const gifFiles = [
+      'approval.gif',
+      'dissaproval.gif',
+      'ikwhereyoulive.gif',
+      'm0ney.gif',
+      'unbelievable.gif',
+      'uhwow.gif',
+      'soiveheard.gif',
+      'ragebait.gif',
+      'kanyestare.gif',
+      'thisismylaststraw.gif',
+      'confused.gif',
+      'speakingtowall.gif',
+      'yaeh.gif',
+      'imallears.gif',
+      'nogifperms.gif',
+      'thisismylastresort.gif',
+      'foiledagain.gif',
+      'geeked.gif',
+      'instructions.gif',
+      'fishkitty.gif'
+    ];
+
+    const ITEMS_PER_PAGE = 10;
+    let currentPage = 1;
+    const grid = document.getElementById('gif-grid');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function renderPage(page) {
+      grid.innerHTML = ''; // Clear grid
+      const start = (page - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      const pageItems = gifFiles.slice(start, end);
+
+      pageItems.forEach(filename => {
+        const url = `${gifDirectory}${filename}`;
+
+        const container = document.createElement('div');
+        container.className = 'gif-container';
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = filename;
+        img.className = 'max-w-[300px] w-full h-auto rounded-lg mx-auto shadow-lg';
+
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.textContent = 'Copy';
+
+        button.onclick = async () => {
+          const copyText = 'https://squair.xyz' + url;
+
+          if (navigator.clipboard && window.isSecureContext) {
+            try {
+              await navigator.clipboard.writeText(copyText);
+              showCopied(button);
+            } catch (err) {
+              console.error('Clipboard write failed', err);
+              fallbackCopy(copyText, button);
+            }
+          } else {
+            fallbackCopy(copyText, button);
+          }
+        };
+
+        function showCopied(button) {
+          button.textContent = 'Copied!';
+          button.classList.add('copied');
+          setTimeout(() => {
+            button.textContent = 'Copy';
+            button.classList.remove('copied');
+          }, 1500);
+        }
+
+        function fallbackCopy(text, button) {
+          const input = document.createElement('input');
+          input.style.position = 'fixed';
+          input.style.opacity = 0;
+          input.value = text;
+          document.body.appendChild(input);
+          input.focus();
+          input.select();
+
+          try {
+            const success = document.execCommand('copy');
+            if (success) {
+              showCopied(button);
+            } else {
+              alert('Copy failed — long-press the link to copy manually.');
+            }
+          } catch (err) {
+            alert('Copy not supported on this browser.');
+          }
+
+          document.body.removeChild(input);
+        }
+
+        container.appendChild(button);
+        container.appendChild(img);
+        grid.appendChild(container);
+      });
+
+      // Update pagination buttons
+      prevBtn.disabled = page === 1;
+      nextBtn.disabled = end >= gifFiles.length;
+    }
+
+    // Event listeners for pagination
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPage(currentPage);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if ((currentPage * ITEMS_PER_PAGE) < gifFiles.length) {
+        currentPage++;
+        renderPage(currentPage);
+      }
+    });
+
+    // Initial render
+    renderPage(currentPage);
+  </script>
+</body>
+</html>

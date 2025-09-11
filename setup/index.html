@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>squair.xyz > My Setup</title>
+    <link rel="icon" type="image/x-icon" href="https://squair.xyz/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;&amp;display=swap" rel="stylesheet">
+    <meta content="squair.xyz" property="og:title">
+    <meta content="My portfolio. Projects, Blogs, Contact info." property="og:description">
+    <meta content="https://squair.xyz/" property="og:url">
+    <meta content="https://squair.xyz/favicon.png" property="og:image">
+    <meta content="#2b7fff" name="theme-color">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: "SF Pro Display", sans-serif;
+            background-color: #0f0f0f;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .horizontal-container {
+            display: flex;
+            width: 400vw;
+            height: 100vh;
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: monospace;
+            font-size: 2rem;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        #overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #overlay.ready {
+            cursor: pointer;
+        }
+        #subtext {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+        .subtext-hidden {
+            display: none;
+        }
+        .footer {
+            position:fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+
+       
+        .setup-table {
+            width: 100%;
+            max-width: 800px; 
+            border-collapse: collapse;
+            margin-top: 2rem;
+            color: #d3d3d3;
+        }
+
+        .setup-table th,
+        .setup-table td {
+            padding: 12px 15px;
+            border: 1px solid black;
+            text-align: left;
+
+        }
+
+        .setup-table th {
+            background-color: #161616; 
+            font-weight: bold;
+        }
+
+        .setup-table tr:nth-child(even) {
+            background-color: #121212;
+        }
+
+        .setup-table tr:hover {
+            background-color: #161616; /* Hover effect */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <main style="width: 100vw; height: 100vh;">
+        <section id="main" class="section text-center">
+            <div class="max-w-2xl">
+                <h1 onclick="history.back()" style="cursor: pointer;" class="text-2xl font-bold text-blue-400 pb-0 mb-8 text-center">back</h1>
+                <h2 class="text-4xl font-bold mb-8 text-blue-400">My Setup</h2>
+
+                <table class="setup-table">
+                    <thead>
+                        <tr class="text-blue-400">
+                            <th>Component</th>
+                            <th>Item</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monitor 1</td>
+                            <td>Samsung Odyssey G5</td>
+                            <td>Great for 27" 1440p @ 165hz, at a cheap price</td>
+                        </tr>
+                        <tr>
+                            <td>Monitor 2</td>
+                            <td>Acer SA241Y</td>
+                            <td>Got as a gift. 25" 1080p @ 100hz, cheap but nice</td>
+                        </tr>
+                        <tr>
+                            <td>Keyboard</td>
+                            <td>Enhance Pathogen 2</td>
+                            <td>Got as a gift. I like the blue switches</td>
+                        </tr>
+                        <tr>
+                            <td>Mouse</td>
+                            <td>TROPRO RGB</td>
+                            <td>Cheap but fast and good quality</td>
+                        </tr>
+                        <tr>
+                            <td>Headphones</td>
+                            <td>Turtle Beach Stealth 700 Gen 2 MAX</td>
+                            <td>Comfy, low latency, and great sound</td>
+                        </tr>
+                        <tr>
+                            <td>Controller</td>
+                            <td>Playstation DualShock 4</td>
+                            <td>Might buy a DualSense controller</td>
+                        </tr>
+                        <tr>
+                            <td>Speaker</td>
+                            <td>Bose Soundbar 600</td>
+                            <td>Couldn't be used for a tv so I got it. SUPER nice sound and bass.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="text-2xl font-bold mb-8 pt-7 text-blue-400">My PC (Mid-range, I know...)</h2>
+                <table class="setup-table">
+                    <thead>
+                        <tr class="text-blue-400">
+                            <th>Component</th>
+                            <th>Item</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CPU</td>
+                            <td>Ryzen 5 5600x</td>
+                            <td>Nice price to performance</td>
+                        </tr>
+                        <tr>
+                            <td>GPU</td>
+                            <td>GIGABYTE RTX 3060 12gb</td>
+                            <td>Wow lots of VRAM</td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td>Corsair Vengance lpx 32gb (16x2) @ 3600mhz</td>
+                            <td>Good amount for what I do. Fast.</td>
+                        </tr>
+                        <tr>
+                            <td>CPU Cooler</td>
+                            <td>DeepCool LS720</td>
+                            <td>AIO. Keeps cpu chilly.</td>
+                        </tr>
+                        <tr>
+                            <td>Storage 1</td>
+                            <td>WD_BLACK 1TB SN770</td>
+                            <td>Speedy. Windows is installed on here</td>
+                        </tr>
+                        <tr>
+                            <td>Storage 2</td>
+                            <td>SanDisk Extreme 1TB</td>
+                            <td>Has most of my projects on here.</td>
+                        </tr>
+                        <tr>
+                            <td>Motherboard</td>
+                            <td>Asus Prime B550M-A WiFi II</td>
+                            <td>Aura RGB, WiFi, Micro ATX</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="text-1xl font-bold mb-8 pt-7 text-white">I'm planning on buying a new PC, and a MacBook Pro in the future.</h2>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
