@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('./font/Coolvetica Rg.otf') format('opentype');
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --an-ltr: ltr 2s ease-in-out infinite;
+
+  @keyframes ltr {
+    50% {
+      transform: translateY(0.5rem);
+    }
+    100% {
+      transform: translateX(10rem);
+    }
+  }
+}
+
+
+body, html, section {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Coolvetica', monospace;
+  letter-spacing: 0.0rem;
+  user-select: none;
+  scroll-behavior: smooth;
+}

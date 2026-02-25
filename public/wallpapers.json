@@ -1,0 +1,54 @@
+{
+    "wallpapers": [
+        {
+            "name": "Flappy Bird (iOS 26+)",
+            "path": "/wallpapers/FlappyBirdV2.tendies",
+            "preview": "/gifs/FlappyBirdV2.gif"
+        },
+        {
+            "name": "Flappy Bird (iOS 17+)",
+            "path": "/wallpapers/FlappyBird.tendies",
+            "preview": "/gifs/FlappyBird.gif"
+        },
+        {
+            "name": "Wave Hills (iOS 26+)",
+            "path": "/wallpapers/Waves_Bundle_Gyro.tendies",
+            "preview": "/gifs/Waves_Bundle_Gyro.gif"
+        },
+        {
+            "name": "Wave Hills (iOS 17+)",
+            "path": "/wallpapers/Waves_Bundle_Static.tendies",
+            "preview": "/gifs/Waves_Bundle_Static.gif"
+        },
+        {
+            "name": "IOS_INTERNAL (iOS 26+)",
+            "path": "/wallpapers/Gyro_iOS_Internal.tendies",
+            "preview": "/gifs/Gyro_iOS_Internal.gif"
+        },
+        {
+            "name": "IOS_INTERNAL (iOS 17+)",
+            "path": "/wallpapers/Static_iOS_Internal.tendies",
+            "preview": "/gifs/Static_iOS_Internal.gif"
+        },
+        {
+            "name": "Niko",
+            "path": "/wallpapers/niko.tendies",
+            "preview": "/gifs/niko.gif"
+        },
+        {
+            "name": "Solar System",
+            "path": "/wallpapers/SolarSystem.tendies",
+            "preview": "/gifs/SolarSystem.gif"
+        },
+        {
+            "name": "Super Mario Bros.",
+            "path": "/wallpapers/SuperMarioBros.tendies",
+            "preview": "/gifs/SuperMarioBros.gif"
+        },
+        {
+            "name": "Exploding Colors",
+            "path": "/wallpapers/ExplodingColors.tendies",
+            "preview": "/gifs/ExplodingColors.gif"
+        }
+    ]
+}
