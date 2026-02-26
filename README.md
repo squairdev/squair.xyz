@@ -23,3 +23,5 @@ TailwindCSS
 Lenis (Scrolling)
 
 Vercel
+
+<p align="center" style="font-size:10px">Made with <3 by Squair</p>
