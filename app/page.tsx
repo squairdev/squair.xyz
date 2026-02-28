@@ -6,91 +6,55 @@ import FadeContent from "./comp/FadeContent";
 import AnimatedContent from "./comp/AnimatedContent";
 import { ReactLenis} from 'lenis/react'
 
-interface spotifyd {
+interface dstat {
   art: string;
   artist: string;
   song: string;
-  track_id: string;
-}
-interface discordd {
+  url: string;
   avatar: string;
-  status: boolean;
-  spotifyl: boolean;
-  spotify?: spotifyd;
-}
-interface lanyardr {
-  success: boolean;
-  data: {
-    discord_user: {
-      avatar: string;
-    };
-    discord_status: string;
-    listening_to_spotify: boolean;
-    spotify?: {
-      album_art_url: string;
-      artist: string;
-      song: string;
-      track_id: string;
-    };
-  };
+  status: string;
+  user: string;
+  display: string;
 }
 
-async function fetchdiscordd(): Promise<discordd> {
+async function fdstat(): Promise<dstat> {
   try {
-    const response = await fetch('https://api.lanyard.rest/v1/users/1039340580012036106');
-    const json: lanyardr = await response.json();
-    const data = json.data;
-    const result: discordd = {
-      avatar: data.discord_user.avatar,
-      status: data.discord_status !== 'offline',
-      spotifyl: data.listening_to_spotify,
-    };
-    if (data.listening_to_spotify && data.spotify) {
-      result.spotify = {
-        art: data.spotify.album_art_url,
-        artist: data.spotify.artist,
-        song: data.spotify.song,
-        track_id: data.spotify.track_id,
-      };
-    }
-    
-    document.getElementById('avatar')?.setAttribute('src', `https://cdn.discordapp.com/avatars/1039340580012036106/${data.discord_user.avatar}.webp?size=128`);
-    let statcolor = 'e';
-    if (data.discord_status === 'online') {
-      statcolor = '#3f8557'
-    } else if (data.discord_status === 'idle') {
-      statcolor = '#ffc04e'
-    } else if (data.discord_status === 'dnd') {
-      statcolor = '#da3e44'
-    } else if (data.discord_status === 'offline') {
-      statcolor = '#84858d'
-    }
+    const response = await fetch('https://d.squair.xyz/');
+    const data: dstat = await response.json();
+
+    document.getElementById('avatar')?.setAttribute('src', data.avatar);
+
+    let statcolor = '#84858d';
+    if (data.status === 'online') statcolor = '#3f8557';
+    else if (data.status === 'idle') statcolor = '#ffc04e';
+    else if (data.status === 'dnd') statcolor = '#da3e44';
+
     document.getElementById('status')?.setAttribute('style', `background-color: ${statcolor};`);
-    if (data.listening_to_spotify && data.spotify) {
-      document.getElementById('spotify')?.setAttribute('style', `display: flex;`);
+
+    if (data.song) {
+      document.getElementById('spotify')?.setAttribute('style', 'display: flex;');
       document.getElementById('card')?.setAttribute('style', 'width: unset;');
-      document.getElementById('art')?.setAttribute('src', data.spotify.album_art_url);
-      document.getElementById('spotify')?.setAttribute('onclick', `window.open('https://open.spotify.com/track/${data.spotify.track_id}', '_blank')`);
-      let song = document.getElementById('song')
-      if (song){
-      song.innerHTML = `${data.spotify.song}`;
-      }
-      let artist = document.getElementById('artist')
-      if (artist){
-      artist.innerHTML = `${data.spotify.artist}`;
-      }
-    }else{
-      document.getElementById('spotify')?.setAttribute('style', `display: none;`);
+      document.getElementById('art')?.setAttribute('src', data.art);
+      document.getElementById('spotify')?.setAttribute('onclick', `window.open('${data.url}', '_blank')`);
+
+      const song = document.getElementById('song');
+      if (song) song.innerHTML = data.song;
+
+      const artist = document.getElementById('artist');
+      if (artist) artist.innerHTML = data.artist;
+    } else {
+      document.getElementById('spotify')?.setAttribute('style', 'display: none;');
       document.getElementById('card')?.setAttribute('style', 'width: 10rem;');
     }
-    return result;
+
+    return data;
   } catch {
     throw 'error fetching data';
   }
 }
-fetchdiscordd()
+fdstat()
 setInterval(() => {
-  fetchdiscordd();
+  fdstat();
 }, 15000);
 export default function Home() {
   return (
