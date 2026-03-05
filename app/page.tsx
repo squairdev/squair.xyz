@@ -5,6 +5,7 @@ import BlurText from "./comp/BlurText";
 import FadeContent from "./comp/FadeContent";
 import AnimatedContent from "./comp/AnimatedContent";
 import { ReactLenis} from 'lenis/react'
+import { useState,useRef, useEffect } from 'react';
 
 interface dstat {
   art: string;
@@ -56,7 +57,89 @@ fdstat()
 setInterval(() => {
   fdstat();
 }, 15000);
+
+interface moosic {
+  name: string;
+  path: string;
+}
+
+interface res {
+  music: moosic[];
+}
+
 export default function Home() {
+  const [expanded, setExpanded] = useState(false);
+  const [psong, setpsong] = useState<moosic[]>([]);
+  const [songnum, setsongnum] = useState<number>(-1);
+  const [isplay, setisplay] = useState(false);
+  const sref = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    fetch('https://d.squair.xyz/music.json')
+      .then(r => r.json())
+      .then((json: res) => setpsong(json.music))
+      .catch(err => console.error('error fetching music\n', err));
+  }, []);
+
+  useEffect(() => {
+    if (songnum < 0 || psong.length === 0) return;
+
+    const track = psong[songnum];
+
+    if (!sref.current) {
+      sref.current = new Audio(track.path);
+    } else {
+      sref.current.pause();
+      sref.current.src = track.path;
+      sref.current.load();
+    }
+
+    sref.current.play().then(() => setisplay(true)).catch(console.error);
+
+    const end = () => {
+      setsongnum(prev => (prev + 1) % psong.length);
+    };
+    sref.current.addEventListener('ended', end);
+    return () => sref.current?.removeEventListener('ended', end);
+  }, [songnum, psong]);
+
+  useEffect(() => {
+    return () => {
+      sref.current?.pause();
+    };
+  }, []);
+
+  const ps = songnum >= 0 && psong.length > 0
+    ? psong[songnum].name
+    : 'no track';
+
+  function play() {
+    if (songnum === -1 && psong.length > 0) {
+      const randomIndex = Math.floor(Math.random() * psong.length);
+      setsongnum(randomIndex);
+      setExpanded(true);
+      return;
+    }
+    setExpanded(prev => !prev);
+  }
+
+  function pause(e: React.MouseEvent) {
+    e.stopPropagation();
+    if (!sref.current) return;
+    if (isplay) {
+      sref.current.pause();
+      setisplay(false);
+    } else {
+      sref.current.play().catch(console.error);
+      setisplay(true);
+    }
+  }
+
+  function skip(e: React.MouseEvent) {
+    e.stopPropagation();
+    if (psong.length === 0) return;
+    setsongnum(prev => (prev + 1) % psong.length);
+  }
   return (
     <section className="font relative h-[100vh]">
       
@@ -153,8 +236,8 @@ export default function Home() {
           <div id='spotify' className='flex items-center gap-3 z-10 p-2 mt-2 bg-green-600/40 border-4 border-solid border-green-400/25 rounded-l-2xl cursor-pointer hover:border-green-600/25 hover:bg-green-800/50 transition-all duration-300 ease-in-out'>
             <img id='art' className='w-[4rem] h-[4rem] rounded-2xl'/>
             <div className='flex flex-col'>
-              <p id='song' className='text-lg'>error load</p>
-              <p id='artist' className='text-md'>error load</p>
+              <p id='song' className='text-lg truncate max-w-[15rem]'>error loading</p>
+              <p id='artist' className='text-md truncate max-w-[15rem]'>error loading</p>
             </div>
           </div>
         </div>
@@ -169,7 +252,7 @@ export default function Home() {
         </div>
       </section>
       <div className='relative flex align-center justify-center -top-5'>
-      <p>SquairCode, 2026. All rights reserved. (v1.0.2)</p>
+      <p>SquairCode, 2026. All rights reserved. (v1.0.3)</p>
       <div className='h-25'></div>
       </div>
       <GradualBlur
@@ -191,7 +274,32 @@ export default function Home() {
         curve="bezier"
         exponential={true}
         opacity={0.7}
-      /></ReactLenis></section>
+      />
+      <div onClick={play} className='z-[2101] w-[48px] h-[48px] fixed bottom-5 left-5 cursor-pointer'>
+        <div id='mbox' className={`z-[2100] ${expanded ? "w-[95vw] min-[1181px]:w-[40vw] max-[1180px]:w-[95vw]" : "w-[48px]"} flex flex-col text-center rounded-full bg-[#1c398e]/15 border-[#1c398e]/25 border-4 border-solid hover:border-[#155dfc]/25 hover:bg-[#155dfc]/15 fixed bottom-5 left-5 transition-all duration-300 ease-in-out`}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width={40} height={40} className='self-start' >
+            <ellipse cx="250" cy="250" rx="250" ry="250" fill="rgb(45, 45, 45)" />
+            <ellipse cx="250" cy="250" rx="230" ry="230" fill="rgb(39, 39, 39)" />
+            <ellipse cx="250" cy="250" rx="210" ry="210" fill="rgb(45, 45, 45)" />
+            <ellipse cx="250" cy="250" rx="190" ry="190" fill="rgb(39, 39, 39)" />
+            <ellipse cx="250" cy="250" rx="170" ry="170" fill="rgb(45, 45, 45)" />
+            <ellipse cx="250" cy="250" rx="190" ry="190" fill="rgb(39, 39, 39)" />
+            <ellipse cx="250" cy="250" rx="170" ry="170" fill="rgb(45, 45, 45)" />
+            <ellipse cx="250" cy="250" rx="150" ry="150" fill="rgb(39, 39, 39)" />
+            <ellipse cx="250" cy="250" rx="130" ry="130" fill="rgb(45, 45, 45)" />
+            <ellipse cx="250" cy="250" rx="70" ry="70" fill="rgb(92, 146, 168)" />
+          </svg>
+          <div className={`pl-[25px] flex justify-center pt-[2] text-xl text-center ${expanded ? "opacity-100" : "opacity-0"} absolute self-center transition-all duration-300 ease-in-out [&>svg]:cursor-pointer [&>svg]:rounded-full [&>svg]:transition-all [&>svg]:duration-100 [&>svg]:ease-in-out`}>
+            <svg onClick={pause} className='hover:bg-[#1c398e]/40' xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#ffffff"><path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z"/></svg>
+            <div className='flex flex-col px-5 items-center pt-[2.5px]'>
+              <p id='ps' className={`text-md ${expanded ? "opacity-100" : "opacity-0"} transition-all duration-200 whitespace-nowrap`}>{ps}</p>
+            </div>
+            <svg onClick={skip} className='hover:bg-[#1c398e]/40' xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#ffffff"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z"/></svg>
+            
+          </div>
+        </div>
+      </div>
+      </ReactLenis></section>
 
 
   );
