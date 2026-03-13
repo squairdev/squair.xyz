@@ -4,6 +4,7 @@ import DotGrid from '../comp/DotGrid';
 import BlurText from "../comp/BlurText";
 import AnimatedContent from "../comp/AnimatedContent";
 import { ReactLenis} from 'lenis/react'
+import { useEffect } from 'react';
 
 interface walls {
   name: string;
@@ -38,9 +39,11 @@ async function fetchWalls(): Promise<void> {
     console.error('Error fetching wallpapers:', error);
   }
 }
-fetchWalls();
 
 export default function Home() {
+  useEffect(() => {
+    fetchWalls();
+  }, []);
   return (
     <section className="font relative h-[150vh]">
       <div style={{ width: '100%', height: '100%', position: 'fixed', overflow: 'auto', zIndex: 0 }}>
@@ -56,7 +59,7 @@ export default function Home() {
       </div>
       <ReactLenis root>
       <section className='z-0 w-[100vw] min-h-[100vh] flex flex-col items-center justify-start pt-20'>
-        <BlurText text="My custom iOS Wallpapers" direction="bottom" delay={70} className="justify-center text-4xl mb-10" />
+        <BlurText text="My custom iOS Wallpapers" direction="bottom" delay={70} className="font-bold justify-center text-4xl mb-10" />
         <AnimatedContent initialOpacity={0.1} direction='vertical' delay={0.0} duration={0.5} className="justify-center text-xl mb-10 text-center">
           <p>These wallpapers use the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license. See <a href='/wallpapers/LICENSE.txt' target='_blank' className='text-sky-300'>LICENSE.txt</a>.</p>
         </AnimatedContent>
