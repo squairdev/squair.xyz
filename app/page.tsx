@@ -49,14 +49,10 @@ async function fdstat(): Promise<dstat> {
     }
 
     return data;
-  } catch {
+  } catch (error){
     throw 'error fetching data';
   }
 }
-// fdstat()
-// setInterval(() => {
-//   fdstat();
-// }, 15000);
 
 interface moosic {
   name: string;
@@ -73,6 +69,12 @@ export default function Home() {
   const [songnum, setsongnum] = useState<number>(-1);
   const [isplay, setisplay] = useState(false);
   const sref = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    fdstat();
+    const int = setInterval(fdstat, 15000);
+    return () => clearInterval(int);
+  }, []);
 
   useEffect(() => {
     fetch('https://d.squair.xyz/music.json')
@@ -252,7 +254,7 @@ export default function Home() {
         </div>
       </section>
       <div className='relative flex align-center justify-center -top-5'>
-      <p>SquairCode, 2026. All rights reserved. (v1.0.3)</p>
+      <p>SquairCode, 2026. All rights reserved. (v1.0.4)</p>
       <div className='h-25'></div>
       </div>
       <GradualBlur

@@ -4,6 +4,7 @@ import DotGrid from '../comp/DotGrid';
 import BlurText from "../comp/BlurText";
 import AnimatedContent from "../comp/AnimatedContent";
 import { ReactLenis} from 'lenis/react'
+import { useEffect } from 'react';
 
 interface walls {
   name: string;
@@ -38,9 +39,11 @@ async function fetchWalls(): Promise<void> {
     console.error('Error fetching wallpapers:', error);
   }
 }
-fetchWalls();
 
 export default function Home() {
+  useEffect(() => {
+    fetchWalls();
+  }, []);
   return (
     <section className="font relative h-[150vh]">
       <div style={{ width: '100%', height: '100%', position: 'fixed', overflow: 'auto', zIndex: 0 }}>
