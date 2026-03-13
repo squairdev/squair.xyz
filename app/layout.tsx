@@ -15,9 +15,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Hey, I'm Squair.",
   description: "A solo web developer.",
-  icons: {
-    icon: "favicon.ico",
-    shortcut: "favicon.ico",
+  openGraph: {
+    title: `Hey, I'm Squair.`,
+    description: 'A solo web developer.',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 64,
+        height: 64,
+      },
+    ],
   },
 };
 
@@ -28,9 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link rel="preconnect" href="https://use.typekit.net" />
+        <link rel="stylesheet" href="https://use.typekit.net/taj5rlj.css" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>

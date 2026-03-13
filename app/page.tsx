@@ -53,10 +53,10 @@ async function fdstat(): Promise<dstat> {
     throw 'error fetching data';
   }
 }
-fdstat()
-setInterval(() => {
-  fdstat();
-}, 15000);
+// fdstat()
+// setInterval(() => {
+//   fdstat();
+// }, 15000);
 
 interface moosic {
   name: string;
