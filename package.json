@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "deploy": "vinext deploy",
     "lint": "eslint",
     "dev:vinext": "vite dev --port 3001",
     "build:vinext": "vite build"
