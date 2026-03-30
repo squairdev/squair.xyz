@@ -1,13 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Coolvetica';
-  src: url('./font/Coolvetica Rg.otf') format('opentype');
-  font-weight: lighter;
-}
-
 :root {
-  --background: #000000;
+  --background: #040404;
   --foreground: #ffffff;
 }
 
@@ -33,9 +27,11 @@
 body, html, section {
   background: var(--background);
   color: var(--foreground);
-  font-family: "futura-100", sans-serif;
+  font-family: "mono45-headline", monospace;
+  font-weight: 500;
   letter-spacing: 0.0rem;
   user-select: none;
+  scroll-behavior: smooth;
 }
 html{
   overflow-x:hidden;
