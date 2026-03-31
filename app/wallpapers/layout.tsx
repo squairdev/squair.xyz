@@ -13,8 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Squair's Wallpapers",
-  description: "My custom wallpapers for iOS.",
+  title: "My Wallpapers",
+  description: "Wallpapers for iOS",
+  openGraph: {
+    title: `My Wallpapers`,
+    description: 'Wallpapers for iOS',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 64,
+        height: 64,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -24,9 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link rel="preconnect" href="https://use.typekit.net" as="style"/>
+        <link rel="stylesheet" href="https://use.typekit.net/taj5rlj.css" as="style"/>
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>

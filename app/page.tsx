@@ -12,6 +12,7 @@ interface dstat {
   song: string;
   url: string;
   avatar: string;
+  banner: string;
   status: string;
   user: string;
   display: string;
@@ -23,6 +24,7 @@ async function fdstat(): Promise<dstat> {
     const data: dstat = await response.json();
 
     document.getElementById('avatar')?.setAttribute('src', data.avatar);
+    document.getElementById('banner')?.setAttribute('src', data.banner);
 
     let statcolor = '#84858d';
     if (data.status === 'online') statcolor = '#3f8557';
@@ -70,10 +72,10 @@ export default function Home() {
         <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[130vh] left-0 -translate-x-1/2 -translate-y-1/2'>
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.2"><defs><filter id="bbblurry-filter-2" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-2)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
         </div>
-        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[250vh] left-0 -translate-x-1/2 -translate-y-1/2'>
+        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[200vh] sm:top-[250vh] left-0 -translate-x-1/2 -translate-y-1/2'>
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.3"><defs><filter id="bbblurry-filter-3" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-3)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
         </div>
-        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[250vh] right-0 -translate-x-1/2 -translate-y-1/2'>
+        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[200vh] sm:top-[250vh] right-0 translate-x-1/2 -translate-y-1/2'>
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.3"><defs><filter id="bbblurry-filter-3" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-3)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
         </div>
       </div>
@@ -86,7 +88,7 @@ export default function Home() {
               <AnimatedContent distance={10} direction='vertical' threshold={0} delay={0.2} ease='power3.out'>Hey,</AnimatedContent>
               <div className='mt-[3.5px] flex gap-7'>
               <AnimatedContent distance={10} direction='vertical' delay={0.4} ease='power3.out'>I'm</AnimatedContent>
-              <AnimatedContent distance={10} direction='vertical' delay={0.6} ease='power3.out' className='text-sky-500'>Squair.</AnimatedContent>
+              <AnimatedContent distance={10} direction='vertical' delay={0.6} ease='power3.out' className='text-sky-500'>Squair<span className='text-white'>.</span></AnimatedContent>
             </div>
           </div>
           <AnimatedContent distance={10} direction='vertical' delay={0.7} ease='power3.out' className='[&>span]:text-xl [&>span]:text-gray-500 mt-7 mb-12'>
@@ -143,7 +145,7 @@ export default function Home() {
       </section>
       <div className='w-full h-[1.5px] bg-gray-500/25'></div>
       <section id='contact' className='z-10 w-[100vw] h-[100vh] flex flex-col items-start justify-center px-6 sm:px-16 py-24 overflow-y-hidden'>
-        <div className='flex w-full h-full justify-center items-center z-[1000]'>
+        <div className='flex flex-col sm:flex-row gap-10 sm:gap-0 w-full h-full justify-center items-center z-[1000]'>
           <div className='w-full justify-self-start'>
             <AnimatedContent distance={10} direction='vertical' delay={0.2}><p className='text-4xl sm:text-6xl'>Let's</p><p className='text-4xl sm:text-6xl'>get <span className='text-sky-500'>in touch</span>.</p></AnimatedContent>
             <AnimatedContent distance={10} direction='vertical' delay={0.7} ease='power3.out' className='[&>span]:text-xl [&>span]:text-gray-500 mt-7 mb-12'><span><span className='text-white'>Questions</span>, <span className='text-white'>Comments</span> or just want to get hold of me? <span className='text-white'>Contact me</span>.</span></AnimatedContent>
@@ -156,19 +158,17 @@ export default function Home() {
             </div>
             
           </div>
-          <AnimatedContent distance={10} direction='vertical' delay={1.0} className=' w-[20rem] h-100 justify-self-center flex flex-col justify-center items-center'>
-            <a className='border border-white/10 group relative bg-black px-8 pb-8 pt-4 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white text-center' href='https://discord.com/users/1039340580012036106'>
-              <span className='text-2xl mb-4 text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200 self-end'>↗</span>
-              <img id='avatar' className='w-30 rounded-full border-6'/>
+          <AnimatedContent distance={10} direction='vertical' delay={1.0} className='group w-[15rem] sm:w-[20rem] h-100 justify-self-center flex flex-col justify-center items-center'>
+            <span className='-translate-x-8 translate-y-12 text-2xl mb-4 text-gray-500 group-hover:text-sky-400 group-hover:-translate-x-7 group-hover:translate-y-11 transition-all duration-200 self-end'>↗</span>
+            <a href='https://discord.com/users/1039340580012036106' className='w-7/8 border-t border-l border-r border-white/10'><img id='banner'/></a>
+            <a className='w-7/8 flex flex-col items-center border-b border-l border-r border-white/10 relative bg-black p-8 flex flex-col gap-4 group-hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white text-center' href='https://discord.com/users/1039340580012036106'>
+              <img id='avatar' className='justify-center align-center w-30 rounded-full border-6'/>
               <p className='mt-2 text-2xl'>Squair</p>
               <p className='-mt-2 text-lg'>squair.dev</p>
             </a>
             
           </AnimatedContent>
         </div>
-        
-      
-  
       </section>
       <GradualBlur
         target="page"
