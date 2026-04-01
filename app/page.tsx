@@ -95,8 +95,8 @@ export default function Home() {
           <span>I <span className='text-white'>make websites</span>, mess around with <span className='text-white'>home servers</span>, and <span className='text-white'>mod Apple devices</span>.</span>
           </AnimatedContent>
           <div className='flex gap-7'>
-            <AnimatedContent distance={10} direction='vertical' delay={0.8}><a className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='#projects'>View Projects</a></AnimatedContent>
-            <AnimatedContent distance={10} direction='vertical' delay={0.9}><a className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='#contact'>Contact me</a></AnimatedContent>
+            <AnimatedContent distance={10} direction='vertical' delay={0.8}><a aria-label='Projects by Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='#projects'>View Projects</a></AnimatedContent>
+            <AnimatedContent distance={10} direction='vertical' delay={0.9}><a aria-label='Contact Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='#contact'>Contact me</a></AnimatedContent>
           </div>
           
         </div>
@@ -109,7 +109,7 @@ export default function Home() {
       <section id='projects' className='z-10 w-[100vw] sm:h-[100vh] flex flex-col items-start justify-center px-6 sm:px-16 py-24'>
         <AnimatedContent distance={10} direction='vertical' delay={0.2} className='z-[1000]'><p className='text-4xl sm:text-6xl mb-12'>Projects</p></AnimatedContent>
         <AnimatedContent distance={10} direction='vertical' delay={0.4} className='z-[1000] w-full grid grid-cols-1 sm:grid-cols-2 border border-white/10 overflow-hidden' style={{gap: '1px', background: 'rgba(255,255,255,0.06)'}}>
-          <a href='https://cobalt.squair.xyz' target='_blank' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 hover:[&>p]:text-white transition-all duration-300 no-underline text-white '>
+          <a aria-label='Cobalt Instance' href='https://cobalt.squair.xyz' target='_blank' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 hover:[&>p]:text-white transition-all duration-300 no-underline text-white '>
             <div className='flex justify-end'>
               <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
             </div>
@@ -117,7 +117,7 @@ export default function Home() {
             <p className='text-sm text-gray-500 leading-relaxed'>A cobalt.tools community instance. Supports downloading for multiple platforms, and <i>sometimes</i> youtube.<br></br><br></br>
             Using the canine.tools/cobalt fork of the Cobalt API.</p>
           </a>
-          <a href='https://kittycat.boo' target='_blank' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 hover:[&>p]:text-white transition-all duration-300 no-underline text-white'>
+          <a aria-label='kittycat.boo services' href='https://kittycat.boo' target='_blank' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 hover:[&>p]:text-white transition-all duration-300 no-underline text-white'>
             <div className='flex justify-end'>
               <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
             </div>
@@ -125,7 +125,7 @@ export default function Home() {
             <p className='text-sm text-gray-500 leading-relaxed'>Multiple services hosted by me.<br></br><br></br>
             Ranging from Zipline to Forgejo, and even more cobalt instances.</p>
           </a>
-          <a href='/wallpapers' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white'>
+          <a aria-label='Wallpapers by Squair' href='/wallpapers' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white'>
             <div className='flex justify-end'>
               <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
             </div>
@@ -133,7 +133,7 @@ export default function Home() {
             <p className='text-sm text-gray-500 leading-relaxed'>Custom animated wallpapers for iOS applied via Nugget.<br></br><br></br>
             Made with Apple's internal software, Mica, on MacOS.</p>
           </a>
-          <a href='#' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white'>
+          <a aria-label='squair.xyz' href='#' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white'>
             <div className='flex justify-end'>
               <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
             </div>
@@ -150,19 +150,19 @@ export default function Home() {
             <AnimatedContent distance={10} direction='vertical' delay={0.2}><p className='text-4xl sm:text-6xl'>Let's</p><p className='text-4xl sm:text-6xl'>get <span className='text-sky-500'>in touch</span>.</p></AnimatedContent>
             <AnimatedContent distance={10} direction='vertical' delay={0.7} ease='power3.out' className='[&>span]:text-xl [&>span]:text-gray-500 mt-7 mb-12'><span><span className='text-white'>Questions</span>, <span className='text-white'>Comments</span> or just want to get hold of me? <span className='text-white'>Contact me</span>.</span></AnimatedContent>
             <div className='flex sm:gap-7 gap-14 flex-col sm:flex-row sm:w-auto'>
-              <AnimatedContent distance={10} direction='vertical' delay={0.8}><a className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='mailto:me@squair.xyz'>me@squair.xyz</a></AnimatedContent>
+              <AnimatedContent distance={10} direction='vertical' delay={0.8}>c<a aria-label='Email Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='mailto:me@squair.xyz'>me@squair.xyz</a></AnimatedContent>
               <div className='flex gap-7 sm:w-auto'>
-                <AnimatedContent distance={10} direction='vertical' delay={1.2}><a className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='https://github.com/squairdev'>GitHub</a></AnimatedContent>
-                <AnimatedContent distance={10} direction='vertical' delay={1.4}><a className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='https://x.com/squairdev'>X / Twitter</a></AnimatedContent>
+                <AnimatedContent distance={10} direction='vertical' delay={1.2}><a aria-label='GitHub Profile' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='https://github.com/squairdev'>GitHub</a></AnimatedContent>
+                <AnimatedContent distance={10} direction='vertical' delay={1.4}><a aria-label='Twitter/X: Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='https://x.com/squairdev'>X / Twitter</a></AnimatedContent>
               </div>
             </div>
             
           </div>
           <AnimatedContent distance={10} direction='vertical' delay={1.0} className='group w-[15rem] sm:w-[20rem] h-100 justify-self-center flex flex-col justify-center items-center'>
             <span className='-translate-x-8 translate-y-12 text-2xl mb-4 text-gray-500 group-hover:text-sky-400 group-hover:-translate-x-7 group-hover:translate-y-11 transition-all duration-200 self-end'>↗</span>
-            <a href='https://discord.com/users/1039340580012036106' className='w-7/8 border-t border-l border-r border-white/10'><img id='banner'/></a>
-            <a className='w-7/8 flex flex-col items-center border-b border-l border-r border-white/10 relative bg-black p-8 flex flex-col gap-4 group-hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white text-center' href='https://discord.com/users/1039340580012036106'>
-              <img id='avatar' className='justify-center align-center w-30 rounded-full border-6'/>
+            <a aria-label='Discord User Profile' href='https://discord.com/users/1039340580012036106' className='w-7/8 border-t border-l border-r border-white/10'><img id='banner' alt='My Discord Banner'/></a>
+            <a aria-label='Discord User Profile' className='w-7/8 flex flex-col items-center border-b border-l border-r border-white/10 relative bg-black p-8 flex flex-col gap-4 group-hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white text-center' href='https://discord.com/users/1039340580012036106'>
+              <img id='avatar' className='justify-center align-center w-30 rounded-full border-6' alt='My Discord Avatar'/>
               <p className='mt-2 text-2xl'>Squair</p>
               <p className='-mt-2 text-lg'>squair.dev</p>
             </a>

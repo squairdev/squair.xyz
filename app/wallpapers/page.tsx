@@ -29,7 +29,7 @@ async function fetchWalls(): Promise<void> {
       div.innerHTML = `
         <h3 class='text-2xl'>${wallpaper.name}</h3>
         <img class='-mt-2' src="${wallpaper.preview}" alt="${wallpaper.name}" />
-        <a href="${wallpaper.path}" class='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' download>Download</a>
+        <a aria-label='${wallpaper.name} Wallpaper by Squair' href="${wallpaper.path}" class='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' download>Download</a>
       `;
       
       container?.appendChild(div);
@@ -51,7 +51,7 @@ export default function Home() {
       <section className='z-0 w-[100vw] min-h-[100vh] flex flex-col items-center justify-start pt-20'>
         <p className="font-bold justify-center text-4xl mb-10">My Custom iOS Wallpapers</p>
         <div className="justify-center text-xl mb-10 text-center">
-          <p>These wallpapers use the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license. See <a href='/wallpapers/LICENSE.txt' target='_blank' className='text-sky-300'>LICENSE.txt</a>.</p>
+          <p>These wallpapers use the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license. See <a aria-label='CC-BY-ND-NC License' href='/wallpapers/LICENSE.txt' target='_blank' className='text-sky-300'>LICENSE.txt</a>.</p>
         </div>
         <div id='wallpapers-container' className='pb-24 z-[100] grid grid-cols-1 gap-20 sm:grid-cols-2 lg:grid-cols-3 justify-center'>
 
