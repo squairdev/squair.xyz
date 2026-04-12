@@ -7,7 +7,7 @@
     "build": "vinext build",
     "deploy": "vinext deploy",
     "lint": "eslint",
-    "dev:vinext": "vite dev --port 3001",
+    "dev:vinext": "vite dev",
     "build:vinext": "vite build"
   },
   "dependencies": {

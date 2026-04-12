@@ -65,6 +65,7 @@ export default function Home() {
   }, []);
   return (
     <section className="font relative h-[100vh]">
+      <a rel="me" href="https://infosec.exchange/@squair" className='w-0 hidden absolute'>Mastodon</a>
       <div className='absolute inset-x-0 top-0 h-[300vh] z-[10] pointer-events-none overflow-hidden'>
         <div className='z-[10] absolute h-[100rem] w-[100rem] top-[50vh] left-0 -translate-x-1/2 -translate-y-1/2'>
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.3"><defs><filter id="bbblurry-filter-1" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-1)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
