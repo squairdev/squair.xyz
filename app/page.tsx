@@ -54,7 +54,6 @@ async function fdstat(): Promise<dstat> {
     throw 'error fetching data';
   }
 }
-fdstat()
 
 export default function Home() {
 
