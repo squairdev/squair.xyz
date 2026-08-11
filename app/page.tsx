@@ -1,195 +1,119 @@
 'use client'
-import GradualBlur from './comp/GradualBlur';
 import BlurText from "./comp/BlurText";
-import FadeContent from "./comp/FadeContent";
 import AnimatedContent from "./comp/AnimatedContent";
+import GradientWaves from './comp/GradientWaves';
 import { ReactLenis} from 'lenis/react'
-import { useState,useRef, useEffect } from 'react';
-
-interface dstat {
-  art: string;
-  artist: string;
-  song: string;
-  url: string;
-  avatar: string;
-  banner: string;
-  status: string;
-  user: string;
-  display: string;
-}
-
-async function fdstat(): Promise<dstat> {
-  try {
-    const response = await fetch('https://d.squair.xyz/');
-    const data: dstat = await response.json();
-
-    document.getElementById('avatar')?.setAttribute('src', data.avatar);
-    document.getElementById('banner')?.setAttribute('src', data.banner);
-
-    let statcolor = '#84858d';
-    if (data.status === 'online') statcolor = '#3f8557';
-    else if (data.status === 'idle') statcolor = '#ffc04e';
-    else if (data.status === 'dnd') statcolor = '#da3e44';
-
-    document.getElementById('avatar')?.setAttribute('style', `border-color: ${statcolor};`);
-
-    if (data.song) {
-      document.getElementById('spotify')?.setAttribute('style', 'display: flex;');
-      document.getElementById('card')?.setAttribute('style', 'width: unset;');
-      document.getElementById('art')?.setAttribute('src', data.art);
-      document.getElementById('spotify')?.setAttribute('onclick', `window.open('${data.url}', '_blank')`);
-
-      const song = document.getElementById('song');
-      if (song) song.innerHTML = data.song;
-
-      const artist = document.getElementById('artist');
-      if (artist) artist.innerHTML = data.artist;
-    } else {
-      document.getElementById('spotify')?.setAttribute('style', 'display: none;');
-      document.getElementById('card')?.setAttribute('style', 'width: 10rem;');
-    }
-
-    return data;
-  } catch (error){
-    throw 'error fetching data';
-  }
-}
+import { useState, useEffect } from 'react';
 
 export default function Home() {
-
-  useEffect(() => {
-    fdstat();
-    const int = setInterval(fdstat, 15000);
-    return () => clearInterval(int);
-  }, []);
+  const [hd, shd] = useState(false);
+  const [da, sda] = useState('opacity-0');
+  const [z, sz] = useState(0.7);
+  useEffect(()=>{
+    if (window.innerWidth <= 768){
+      sz(0.5)
+    }
+  },[])
+  const eto = `maito:me@squair.xyz`
   return (
-    <section className="font relative h-[100vh]">
-      <a rel="me" href="https://infosec.exchange/@squair" className='w-0 hidden absolute'>Mastodon</a>
-      <div className='absolute inset-x-0 top-0 h-[300vh] z-[10] pointer-events-none overflow-hidden'>
-        <div className='z-[10] absolute h-[100rem] w-[100rem] top-[50vh] left-0 -translate-x-1/2 -translate-y-1/2'>
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.3"><defs><filter id="bbblurry-filter-1" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-1)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
-        </div>
-        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[130vh] left-0 -translate-x-1/2 -translate-y-1/2'>
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.2"><defs><filter id="bbblurry-filter-2" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-2)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
-        </div>
-        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[200vh] sm:top-[250vh] left-0 -translate-x-1/2 -translate-y-1/2'>
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.3"><defs><filter id="bbblurry-filter-3" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-3)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
-        </div>
-        <div className='z-[1000] absolute h-[100rem] w-[100rem] top-[200vh] sm:top-[250vh] right-0 translate-x-1/2 -translate-y-1/2'>
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800" opacity="0.3"><defs><filter id="bbblurry-filter-3" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" colorInterpolationFilters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(#bbblurry-filter-3)"><ellipse rx="150" ry="150" cx="400" cy="400" fill="#00a6f4"></ellipse></g></svg>
-        </div>
+    <section className="font relative h-screen">
+      <div className="fixed inset-0 z-0 pointer-events-none bg-black w-full h-full">
+        <GradientWaves
+          horizonColor="#3B82F6"
+          waveColor="#ffffff"
+          crestColor="#FFFFFF"
+          speed={0.2}
+          amplitude={1.6}
+          waveScale={0.6}
+          waveRatio={0.9}
+          swell={22.5}
+          turbulence={20}
+          tilt={0.2}
+          zoom={z}
+          height={5.2}
+          fogDepth={15}
+          detail="low"
+          brightness={1}
+          opacity={0.74}
+          mouseInteraction={false}
+          parallaxStrength={0.5}
+          grain={false}
+          grainIntensity={0.05}
+        />
       </div>
       <ReactLenis root options={{ lerp: 0.05, duration: 2 }}>
-      <section className='z-10 w-[100vw] h-[100vh] flex items-center justify-start px-6 sm:ml-10'>
-        <div className='w-full max-w-[25rem] px-2 z-10'>
-          <AnimatedContent distance={10} direction='vertical' delay={0.1} ease='power3.out' className='text-xl'>Solo dev</AnimatedContent>
-          <AnimatedContent distance={10} direction='vertical' delay={0.2} ease='power3.out' className='w-full h-[2px] bg-sky-500 mb-7'><></></AnimatedContent>
-            <div className='text-[5rem] sm:text-[6rem] leading-none overflow-visible'>
-              <AnimatedContent distance={10} direction='vertical' threshold={0} delay={0.2} ease='power3.out'>Hey,</AnimatedContent>
-              <div className='mt-[3.5px] flex gap-7'>
-              <AnimatedContent distance={10} direction='vertical' delay={0.4} ease='power3.out'>I'm</AnimatedContent>
-              <AnimatedContent distance={10} direction='vertical' delay={0.6} ease='power3.out' className='text-sky-500'>Squair<span className='text-white'>.</span></AnimatedContent>
+      <section className='sec1 relative z-10 w-screen flex flex-col items-center justify-center min-h-screen'>
+        <div className='w-[90vw] sm:max-w-[40vw] h-100 flex flex-col justify-center items-center text-center'>
+          <BlurText delay={130} className='text-5xl sm:text-6xl' text="I'm Squair" direction='bottom' animateBy="words" onAnimationComplete={() => shd(true)}/>
+          <BlurText delay={150} className='text-xl sm:text-2xl mt-5 flex justify-center items-center max-w-[50%] sm:max-w-full' text="Solo web dev & Apple enthusiast" direction='bottom' animateBy="words" ac={hd}/>
+        </div>
+        <AnimatedContent delay={0.5} distance={25} className='w-10 h-10 absolute bottom-50 flex flex-col justify-center items-center' onComplete={() => sda('opacity-100')}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" className={da}><path d="M480-80 200-360l56-57 184 184v-287h80v287l184-183 56 56L480-80Zm-40-520v-120h80v120h-80Zm0-200v-80h80v80h-80Z"/></svg></AnimatedContent>
+      </section>
+      <section id='about' className='sec2 relative z-10 w-screen flex flex-col sm:flex-row sm:gap-5 items-center justify-center sm:justify-between h-full [&>div]:sm:mx-[12.5vw] text-center'>
+        <div className='sm:w-[40vw] w-[90vw]'>
+          <BlurText delay={130} className='text-4xl sm:text-5xl mb-5' text="Whoami?" direction='bottom' animateBy="words"/>
+          <BlurText delay={85} className='font-medium text-lg sm:text-[23px] mb-5' text="I'm a solo web developer from Canada. I'm interested in all sorts of tech. turntables & vinyls, servers, iDevices, ... anything tech." direction='bottom' animateBy="words"/>
+        </div>
+        
+        <div className='mt-13 sm:mt-0 sm:w-[40vw] w-[90vw]'>
+          <BlurText delay={130} className='text-4xl sm:text-5xl mb-5' text="My work" direction='bottom' animateBy="words"/>
+          <a href='#' className='mt-3'>
+            <div className='flex gap-2 items-center'>
+              <BlurText delay={130} className='text-2xl mb-2' text="Websites" direction='bottom' animateBy="words"/>
+              <AnimatedContent delay={0.3} distance={25} title='TailwindCSS'><svg className='w-6' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33"><g clipPath="url(#prefix__clip0)"><path fill="#38bdf8" fillRule="evenodd" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z" clipRule="evenodd"/></g><defs><clipPath id="prefix__clip0"><path fill="#fff" d="M0 0h54v32.4H0z"/></clipPath></defs></svg></AnimatedContent>
+              <AnimatedContent delay={0.4} distance={25} title='React'><svg className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348"><circle cx="0" cy="0" r="2.05" fill="#61dafb"/><g stroke="#61dafb" strokeWidth="1" fill="none"><ellipse rx="11" ry="4.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)"/><ellipse rx="11" ry="4.2" transform="rotate(120)"/></g></svg></AnimatedContent>
             </div>
-          </div>
-          <AnimatedContent distance={10} direction='vertical' delay={0.7} ease='power3.out' className='[&>span]:text-xl [&>span]:text-gray-500 mt-7 mb-12'>
-          <span>I <span className='text-white'>make websites</span>, mess around with <span className='text-white'>home servers</span>, and <span className='text-white'>mod Apple devices</span>.</span>
-          </AnimatedContent>
-          <div className='flex gap-7'>
-            <AnimatedContent distance={10} direction='vertical' delay={0.8}><a aria-label='Projects by Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='#projects'>View Projects</a></AnimatedContent>
-            <AnimatedContent distance={10} direction='vertical' delay={0.9}><a aria-label='Contact Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='#contact'>Contact me</a></AnimatedContent>
+            <BlurText delay={140} className='font-medium text-lg sm:text-xl mb-5' text="I've created multiple websites over the years, like squair.xyz and kittycat.boo. I focus on frontend design." direction='bottom' animateBy="words" />
+          </a>
+          <a href='https://squair.xyz/wallpapers' target='_blank'>
+            <div className='flex gap-2 items-center'>
+              <BlurText delay={150} className='text-2xl mb-2' text="Wallpapers" direction='bottom' animateBy="words"/>
+              <AnimatedContent delay={0.5} distance={25}><img className='w-6' alt='Mica' title="Mica, Apple's internal .ca editor" src='./Mica.svg'/></AnimatedContent>
+              </div>
+            <BlurText delay={160} className='font-medium text-lg sm:text-xl mb-5' text="I make several custom moving wallpapers for iDevices with Apple's internal software, Mica." direction='bottom' animateBy="words" />
+          </a>
+          <a href='https://cobalt.squair.xyz' target='_blank'>
+            <div className='flex gap-2 items-center'>
+              <BlurText delay={170} className='text-2xl mb-2' text="Cobalt instances" direction='bottom' animateBy="words"/>
+              <AnimatedContent delay={0.6} distance={25}><img alt='Linux' className='w-6' src='https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg'/></AnimatedContent>
+              </div>
+            <BlurText delay={180} className='font-medium text-lg sm:text-xl mb-5' text="I currently host multiple cobalt.tools instances (found at cobalt.directory), allowing downloading support for multiple platforms." direction='bottom' animateBy="words" />
+          </a>
+        </div>
+      </section>
+      <section id='contact' className='sec3 relative z-10 w-screen flex flex-col items-center justify-center min-h-screen'>
+        <div className='w-[90vw] sm:max-w-[40vw] h-100 flex flex-col justify-center items-center text-center mt-auto'>
+          <BlurText delay={130} className='text-4xl sm:text-5xl mb-5' text="Contact" direction='bottom' animateBy="words"/>
+          <div className='flex flex-col sm:flex-row gap-2'>
+            <a href='https://github.com/squairdev' target='_blank' className='hover:*:bg-black/40 *:transition-colors *:duration-300'><AnimatedContent delay={0.3} className='bg-black/25 border-2 border-[#3B82F6] p-3 text-xl'>GitHub</AnimatedContent></a>
+            <a href='https://x.com/squairdev' target='_blank' className='hover:*:bg-black/40 *:transition-colors *:duration-300'><AnimatedContent delay={0.4} className='bg-black/25 border-2 border-[#3B82F6] p-3 text-xl'>Twitter</AnimatedContent></a>
+            <a onClick={()=>window.location.href = eto} className='cursor-pointer hover:*:bg-black/40 *:transition-colors *:duration-300'><AnimatedContent delay={0.5} className='bg-black/25 border-2 border-[#3B82F6] p-3 text-xl'>Email</AnimatedContent></a>
           </div>
           
         </div>
-        <AnimatedContent distance={10} direction='vertical' delay={1.5} threshold={0} ease='power3.out' className='absolute bottom-20 left-[80px] z-[2000] flex'>
-          <p>scroll</p>
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-80 200-360l56-57 184 184v-287h80v287l184-183 56 56L480-80Zm-40-520v-120h80v120h-80Zm0-200v-80h80v80h-80Z"/></svg>
-        </AnimatedContent>
-      </section>
-      <div className='w-full h-[0.5px] bg-gray-500/25'></div>
-      <section id='projects' className='z-10 w-[100vw] sm:h-[100vh] flex flex-col items-start justify-center px-6 sm:px-16 py-24'>
-        <AnimatedContent distance={10} direction='vertical' delay={0.2} className='z-[1000]'><p className='text-4xl sm:text-6xl mb-12'>Projects</p></AnimatedContent>
-        <AnimatedContent distance={10} direction='vertical' delay={0.4} className='z-[1000] w-full grid grid-cols-1 sm:grid-cols-2 border border-white/10 overflow-hidden' style={{gap: '1px', background: 'rgba(255,255,255,0.06)'}}>
-          <a aria-label='Cobalt Instance' href='https://cobalt.squair.xyz' target='_blank' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 hover:[&>p]:text-white transition-all duration-300 no-underline text-white '>
-            <div className='flex justify-end'>
-              <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
-            </div>
-            <p className='text-2xl'>Cobalt Instance</p>
-            <p className='text-sm text-gray-500 leading-relaxed'>A cobalt.tools community instance. Supports downloading for multiple platforms, and <i>sometimes</i> youtube.<br></br><br></br>
-            Using the canine.tools/cobalt fork of the Cobalt API.</p>
-          </a>
-          <a aria-label='kittycat.boo services' href='https://kittycat.boo' target='_blank' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 hover:[&>p]:text-white transition-all duration-300 no-underline text-white'>
-            <div className='flex justify-end'>
-              <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
-            </div>
-            <p className='text-2xl'>kittycat.boo</p>
-            <p className='text-sm text-gray-500 leading-relaxed'>Multiple services hosted by me.<br></br><br></br>
-            Ranging from Zipline to Forgejo, and even more cobalt instances.</p>
-          </a>
-          <a aria-label='Wallpapers by Squair' href='/wallpapers' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white'>
-            <div className='flex justify-end'>
-              <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
-            </div>
-            <p className='text-2xl'>iOS Wallpapers</p>
-            <p className='text-sm text-gray-500 leading-relaxed'>Custom animated wallpapers for iOS applied via Nugget.<br></br><br></br>
-            Made with Apple's internal software, Mica, on MacOS.</p>
-          </a>
-          <a aria-label='squair.xyz' href='#' className='group relative bg-black p-8 flex flex-col gap-4 hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white'>
-            <div className='flex justify-end'>
-              <span className='text-gray-500 group-hover:text-sky-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200'>↗</span>
-            </div>
-            <p className='text-2xl'>squair.xyz</p>
-            <p className='text-sm text-gray-500 leading-relaxed'>This portfolio. Built with Next.js and Tailwind. View my projects and contact info.<br></br><br></br>
-            Not much else to say, you're already here!</p>
-          </a>
-        </AnimatedContent>
-      </section>
-      <div className='w-full h-[1.5px] bg-gray-500/25'></div>
-      <section id='contact' className='z-10 w-[100vw] h-[100vh] flex flex-col items-start justify-center px-6 sm:px-16 py-24 overflow-y-hidden'>
-        <div className='flex flex-col sm:flex-row gap-10 sm:gap-0 w-full h-full justify-center items-center z-[1000]'>
-          <div className='w-full justify-self-start'>
-            <AnimatedContent distance={10} direction='vertical' delay={0.2}><p className='text-4xl sm:text-6xl'>Let's</p><p className='text-4xl sm:text-6xl'>get <span className='text-sky-500'>in touch</span>.</p></AnimatedContent>
-            <AnimatedContent distance={10} direction='vertical' delay={0.7} ease='power3.out' className='[&>span]:text-xl [&>span]:text-gray-500 mt-7 mb-12'><span><span className='text-white'>Questions</span>, <span className='text-white'>Comments</span> or just want to get hold of me? <span className='text-white'>Contact me</span>.</span></AnimatedContent>
-            <div className='flex sm:gap-7 gap-14 flex-col sm:flex-row sm:w-auto'>
-              <AnimatedContent distance={10} direction='vertical' delay={0.8}><a aria-label='Email Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='mailto:me@squair.xyz'>me@squair.xyz</a></AnimatedContent>
-              <div className='flex gap-7 sm:w-auto'>
-                <AnimatedContent distance={10} direction='vertical' delay={1.2}><a aria-label='GitHub Profile' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='https://github.com/squairdev'>GitHub</a></AnimatedContent>
-                <AnimatedContent distance={10} direction='vertical' delay={1.4}><a aria-label='Twitter/X: Squair' className='p-4 bg-transparent hover:bg-sky-500 text-white hover:text-black border-sky-500 border-2 text-xl transition-all duration-200 ease-in-out' href='https://x.com/squairdev'>X / Twitter</a></AnimatedContent>
-              </div>
-            </div>
-            
+        <div className='flex flex-col items-center justify-center mt-auto mb-10'>
+          <div className='w-[90vw] sm:w-[70vw] flex flex-wrap gap-1 justify-center items-center text-center pb-3 mb-3 border-b-2 border-white [&>img]:w-25 [&>img]:sm:w-27.5'>
+            <img src='./8831/squair.gif' alt='squair.xyz' title='squair.xyz' className='cursor-pointer' onClick={()=>navigator.clipboard.writeText("<a href='https://squair.xyz'><img src='https://squair.xyz/8831/squair.gif' alt='squair.xyz' title='squair.xyz'/></a>")}/>
+            <p>Click to copy (pls hotlink)</p>
           </div>
-          <AnimatedContent distance={10} direction='vertical' delay={1.0} className='group w-[15rem] sm:w-[20rem] h-100 justify-self-center flex flex-col justify-center items-center'>
-            <span className='-translate-x-8 translate-y-12 text-2xl mb-4 text-gray-500 group-hover:text-sky-400 group-hover:-translate-x-7 group-hover:translate-y-11 transition-all duration-200 self-end'>↗</span>
-            <a aria-label='Discord User Profile' href='https://discord.com/users/1039340580012036106' className='w-7/8 border-t border-l border-r border-white/10'><img id='banner' alt='My Discord Banner'/></a>
-            <a aria-label='Discord User Profile' className='w-7/8 flex flex-col items-center border-b border-l border-r border-white/10 relative bg-black p-8 flex flex-col gap-4 group-hover:bg-sky-500/25 transition-all hover:[&>p]:text-white duration-300 no-underline text-white text-center' href='https://discord.com/users/1039340580012036106'>
-              <img id='avatar' className='justify-center align-center w-30 rounded-full border-6' alt='My Discord Avatar'/>
-              <p className='mt-2 text-2xl'>Squair</p>
-              <p className='-mt-2 text-lg'>squair.dev</p>
-            </a>
-            
-          </AnimatedContent>
+          <div className='w-[80vw] sm:w-[60vw] flex flex-wrap gap-1 justify-center items-center text-center [&>img]:sm:w-27.5 [&>img]:w-25 [&>a>img]:w-25'>
+            <img src='./8831/bestcanada.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/can.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/canada.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/canadab.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/cananow.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/cdaweb.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/cc-some.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/cc-somerights.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/ffmpeg.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/gnu-linux.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/linux-p.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/amd_powered.gif' alt='squair.xyz' title='squair.xyz'/>
+            <img src='./8831/nocookie.gif' alt='squair.xyz' title='squair.xyz'/>
+            <a href="https://roooot.dev/" title='roooot.dev'><img src="https://roooot.dev/buttons/btn.png" alt='roooot.dev'/></a>
+          </div>
         </div>
       </section>
-      <GradualBlur
-        target="page"
-        position="bottom"
-        height="6rem"
-        strength={2}
-        divCount={5}
-        curve="bezier"
-        exponential={true}
-        opacity={0.7}
-      />
-      <GradualBlur
-        target="page"
-        position="top"
-        height="6rem"
-        strength={2}
-        divCount={5}
-        curve="bezier"
-        exponential={true}
-        opacity={0.7}
-      />
       </ReactLenis></section>
 
 

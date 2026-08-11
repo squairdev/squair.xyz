@@ -25,13 +25,11 @@
 
 
 body, html, section {
-  background: var(--background);
   color: var(--foreground);
-  font-family: "mono45-headline", monospace;
-  font-display: swap;
-  font-weight: 500;
+  font-family: "neutronic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   letter-spacing: 0.0rem;
-  user-select: none;
   scroll-behavior: smooth;
 }
 html{

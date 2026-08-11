@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "private": true,
   "scripts": {
-    "dev": "vinext dev",
+    "dev": "next dev",
     "build": "vinext build",
     "deploy": "vinext deploy",
     "lint": "eslint",
@@ -26,6 +26,7 @@
     "vinext": "^0.0.30"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19.2.8",
@@ -37,8 +38,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "vite": "^7.0.0",
-    "@cloudflare/vite-plugin": "^1.0.0"
+    "vite": "^7.0.0"
   },
   "type": "module"
 }

@@ -11,6 +11,16 @@
             "preview": "/gifs/FlappyBird.gif"
         },
         {
+            "name": "Mau Makan Apa?",
+            "path": "/wallpapers/Mau_Makan_Apa.tendies",
+            "preview": "/gifs/Mau_Makan_Apa.gif"
+        },
+        {
+            "name": "Project Hail Mary",
+            "path": "/wallpapers/Project_Hail_Mary.tendies",
+            "preview": "/gifs/Project_Hail_Mary.gif"
+        },
+        {
             "name": "Wave Hills (iOS 26+)",
             "path": "/wallpapers/Waves_Bundle_Gyro.tendies",
             "preview": "/gifs/Waves_Bundle_Gyro.gif"
