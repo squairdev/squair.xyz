@@ -6,14 +6,7 @@ export const metadata: Metadata = {
   description: "A solo web developer.",
   openGraph: {
     title: `I'm Squair`,
-    description: 'A solo web developer.',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 64,
-        height: 64,
-      },
-    ],
+    description: 'A solo web developer.'
   },
 };
 
