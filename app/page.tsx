@@ -14,7 +14,7 @@ export default function Home() {
       sz(0.5)
     }
   },[])
-  const eto = `maito:me@squair.xyz`
+  const eto = `mailto:me@squair.xyz`
   return (
     <section className="font relative h-screen">
       <div className="fixed inset-0 z-0 pointer-events-none bg-black w-full h-full">
