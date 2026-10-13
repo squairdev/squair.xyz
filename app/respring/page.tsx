@@ -22,10 +22,9 @@ export default function Home() {
   })
 
   return(
-    <section className="font relative h-[100vh] flex flex-col gap-10 items-center justify-center" id='cont'>
-      <p className='text-white text-3xl'>Neonmodder Respring</p>
-      <p>If this does not work, try reloading</p>
-      <p>This Respring method was made by <a href='https://github.com/neonmodder123' className='text-sky-500'>Neon</a> &#60;3</p>
+    <section className="font relative h-[100vh] flex flex-col items-center gap-2 justify-center bg-black" id='cont'>
+      <p className='text-white text-3xl'>A respring made by <a href='https://github.com/neonmodder123' className='text-sky-300'>Neonmodder</a></p>
+      <p className='text-xl'>Made for any iOS/iPadOS device. Reload if it's not working for you.</p>
     </section>
   );
 }
