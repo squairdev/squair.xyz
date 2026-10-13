@@ -11,9 +11,14 @@
             "preview": "/gifs/FlappyBird.gif"
         },
         {
-            "name": "Mau Makan Apa?",
-            "path": "/wallpapers/Mau_Makan_Apa.tendies",
-            "preview": "/gifs/Mau_Makan_Apa.gif"
+            "name": "The Odyssey",
+            "path": "/wallpapers/The_Odyssey.tendies",
+            "preview": "/gifs/The_Odyssey.gif"
+        },
+        {
+            "name": "Night City",
+            "path": "/wallpapers/Night_City.tendies",
+            "preview": "/gifs/Night_City.gif"
         },
         {
             "name": "Project Hail Mary",
