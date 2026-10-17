@@ -75,7 +75,8 @@ export default function Home() {
       <section className='z-0 w-full min-h-screen flex flex-col items-center justify-center pt-20 *:z-10'>
         <p className="font-bold justify-center text-4xl mb-10">My Wallpapers</p>
         <div className="justify-center text-xl mb-10 text-center">
-          <p>These wallpapers use the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license. See <a aria-label='CC-BY-ND-NC License' href='/wallpapers/LICENSE.txt' target='_blank' className='text-sky-300'>LICENSE.txt</a>.</p>
+          <p>These wallpapers use the CC BY-NC-ND 4.0 license. See <a aria-label='CC-BY-ND-NC License' href='/wallpapers/LICENSE.txt' target='_blank' className='text-sky-300'>LICENSE.txt</a>.</p>
+          <div className='flex justify-center items-center'>Like my work?<a href='https://ko-fi.com/J3J01FUEGH' target='_blank'><img height='36' className='ml-2 mt-1 border-0 h-[36px]' src='https://storage.ko-fi.com/cdn/kofi5.png?v=6' alt='Buy Me a Coffee at ko-fi.com' /></a>!</div>
         </div>
         <div id='wc' className='pb-24 z-100 grid grid-cols-1 gap-20 sm:grid-cols-2 lg:grid-cols-3 self-center'>
         </div>
